@@ -21,21 +21,32 @@ class _MyappState extends State<Myapp> {
   }
 
   changeAppbarcolor(Color color) {
-    AppbarColor.appbarcolor = color;
+    setState(() {
+      AppConstans.appbarcolor = color;
+    });
+  }
+
+  changebodycolor(Color color) {
+    AppConstans.bodycolor = color;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppbarColor.appbarcolor,
+        scaffoldBackgroundColor: AppConstans.bodycolor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppConstans.appbarcolor,
         ),
       ),
       darkTheme: ThemeData.dark().copyWith(),
       themeMode: AppConstans.themeMode,
       debugShowCheckedModeBanner: false,
-      home: Homescreen(onThemeModeChanged: changeThemeMode),
+      home: Homescreen(
+          onThemeModeChanged: changeThemeMode,
+          onAppbarchanged: changeAppbarcolor,
+          onbodychangecolor: changebodycolor),
     );
   }
 }
