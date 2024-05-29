@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lesson43/controllers/settings_controller.dart';
+import 'package:lesson43/portals/settings_portal.dart';
 import 'package:lesson43/utils/app_constans.dart';
 import 'package:lesson43/views/screens/homescreen.dart';
 
@@ -33,20 +35,28 @@ class _MyappState extends State<Myapp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppConstans.bodycolor,
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppConstans.appbarcolor,
-        ),
-      ),
-      darkTheme: ThemeData.dark().copyWith(),
-      themeMode: AppConstans.themeMode,
-      debugShowCheckedModeBanner: false,
-      home: Homescreen(
-          onThemeModeChanged: changeThemeMode,
-          onAppbarchanged: changeAppbarcolor,
-          onbodychangecolor: changebodycolor),
+    return SettingsPortal(
+      settingsController: SettingsController(),
+      child: Builder(builder: (context) {
+        return ListenableBuilder(
+            listenable: SettingsPortal.of(context),
+            builder: (context, child) {
+              return MaterialApp(
+                theme: ThemeData(
+                  scaffoldBackgroundColor: AppConstans.bodycolor,
+                  appBarTheme: AppBarTheme(
+                    backgroundColor: AppConstans.appbarcolor,
+                  ),
+                ),
+                darkTheme: ThemeData.dark().copyWith(),
+                themeMode: SettingsPortal.of(context).themeMode,
+                debugShowCheckedModeBanner: false,
+                home: Homescreen(
+                    onAppbarchanged: changeAppbarcolor,
+                    onbodychangecolor: changebodycolor),
+              );
+            });
+      }),
     );
   }
 }

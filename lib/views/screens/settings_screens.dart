@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:lesson43/portals/settings_portal.dart';
 import 'package:lesson43/utils/app_constans.dart';
 import 'package:lesson43/views/screens/pincode_page.dart';
 import 'package:lesson43/views/screens/quitpage.dart';
@@ -8,15 +9,15 @@ import 'package:lesson43/views/widgets/custom_drawer.dart';
 class SettingsScreens extends StatefulWidget {
   SettingsScreens(
       {super.key,
-      required this.onThemeModeChanged,
       required this.onAppbarchanged,
       required this.onbodychangecolor});
 
-  final ValueChanged<bool> onThemeModeChanged;
+
   final ValueChanged<Color> onbodychangecolor;
   final ValueChanged<Color> onAppbarchanged;
 
   @override
+  
   _SettingsScreensState createState() => _SettingsScreensState();
 }
 
@@ -102,25 +103,16 @@ class _SettingsScreensState extends State<SettingsScreens> {
       ),
       drawer: CustomDrawer(
           onbodychangecolor: widget.onbodychangecolor,
-          onThemeModeChanged: widget.onThemeModeChanged,
+    
           onAppbarchanged: widget.onAppbarchanged),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             SwitchListTile(
-              value: AppConstans.themeMode == ThemeMode.dark,
+              value: SettingsPortal.of(context).themeMode == ThemeMode.dark,
               onChanged: (value) {
-                setState(() {
-                  if (value) {
-                    themestring = 'Light Mode';
-                    AppConstans.themeMode = ThemeMode.light;
-                  } else {
-                    themestring = 'Night Mode';
-                    AppConstans.themeMode = ThemeMode.dark;
-                  }
-                });
-                widget.onThemeModeChanged(value);
+                SettingsPortal.of(context).uchiribyoqish(value);
               },
               title: Text(themestring),
             ),

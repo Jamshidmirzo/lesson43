@@ -4,12 +4,12 @@ import 'package:lesson43/views/screens/settings_screens.dart';
 
 // ignore: must_be_immutable
 class CustomDrawer extends StatelessWidget {
-  ValueChanged<bool> onThemeModeChanged;
+  
   ValueChanged<Color> onAppbarchanged;
   ValueChanged<Color> onbodychangecolor;
   CustomDrawer(
       {super.key,
-      required this.onThemeModeChanged,
+    
       required this.onAppbarchanged,required this.onbodychangecolor});
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (ctx) {
                       return Homescreen(
-                          onThemeModeChanged: onThemeModeChanged,
+                      
                           onAppbarchanged: onAppbarchanged,onbodychangecolor :onbodychangecolor);
                     },
                   ),
@@ -39,13 +39,13 @@ class CustomDrawer extends StatelessWidget {
               leading: const Icon(Icons.home),
               trailing: const Icon(Icons.chevron_right)),
           ListTile(
-              title: const Text('Setting Sahifa'),
+              title:  Text('Setting Sahifa'),
               onTap: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (ctx) {
                       return SettingsScreens(
-                          onThemeModeChanged: onThemeModeChanged,
+                          
                           onAppbarchanged: onAppbarchanged,onbodychangecolor:onbodychangecolor);
                     },
                   ),
