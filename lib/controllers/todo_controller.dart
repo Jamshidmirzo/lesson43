@@ -7,10 +7,6 @@ class TodoController {
   }
 
   adddtask(int id, String description, String title, DateTime date) {
-    print(id);
-    print(description);
-    print(title);
-    print(date);
     _list.add(
       Todo(id: id, description: description, title: title, date: date),
     );
