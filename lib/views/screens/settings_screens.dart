@@ -12,12 +12,10 @@ class SettingsScreens extends StatefulWidget {
       required this.onAppbarchanged,
       required this.onbodychangecolor});
 
-
   final ValueChanged<Color> onbodychangecolor;
   final ValueChanged<Color> onAppbarchanged;
 
   @override
-  
   _SettingsScreensState createState() => _SettingsScreensState();
 }
 
@@ -30,7 +28,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
   void initState() {
     super.initState();
 
-    appBarColor = AppConstans.appbarcolor;
+    appBarColor = AppConstans.addappbarcolor(Colors.red);
     bodycolor = AppConstans.bodycolor;
   }
 
@@ -103,7 +101,6 @@ class _SettingsScreensState extends State<SettingsScreens> {
       ),
       drawer: CustomDrawer(
           onbodychangecolor: widget.onbodychangecolor,
-    
           onAppbarchanged: widget.onAppbarchanged),
       body: Padding(
         padding: const EdgeInsets.all(20),

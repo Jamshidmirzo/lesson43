@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Quitpage extends StatelessWidget {
   String pincode1;
   String pincode2;
